@@ -37,11 +37,9 @@ const[toggle,settoggle]=useState(false)
         <View>
             <ImageBackground source={Path.Backgroundimage}
              style={styles.ImageBackgroundStyle1}>
+                   <Image source={Path.logo} style={styles.LogoStyle}></Image>
 
-                <View>
-                    <Image source={Path.logo} style={styles.LogoStyle}></Image>
-
-                </View>
+                
                 <View style={{ alignSelf: "center", marginTop: "5%", marginBottom: "5%" }}>
                     {/* <Text style={styles.TextStyle1}>GOLF FLIP</Text> */}
                     <Text style={styles.TextStyle1}>GOLF FLIP</Text>
