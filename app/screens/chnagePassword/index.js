@@ -2,12 +2,11 @@ import React from 'react'
 import { useState } from 'react'
 import { View, Text, Image, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity } from 'react-native'
 import Path from '../../Constant/ImagePath'
-const SignUp = ({navigation}) => {
-    const UserData = {
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: ""
+const changePassword = ({navigation}) => {
+    const UserData = { 
+        newPassword: "",
+        confirmPassword:"",
+        
     }
 
     const [user, setUser] = useState(UserData)
@@ -28,7 +27,7 @@ const SignUp = ({navigation}) => {
                 <View style={{ alignSelf: "center", marginTop: "5%", marginBottom: "5%" }}>
 
                     <Text style={styles.TextStyle1}>GOLF FLIP</Text>
-                    <Text style={styles.TextStyle2}>Create an Account</Text>
+                    <Text style={styles.TextStyle2}>Change Password</Text>
                 </View>
 
 
@@ -36,35 +35,23 @@ const SignUp = ({navigation}) => {
                 <View style={styles.TextStyle}>
                     <TextInput
                         style={{ marginLeft: 7 }}
-                        placeholder="Name"
+                        placeholder="New Password"
                         placeholderTextColor="black"
-                        onChangeText={(event) => onChange("name", event)} />
+                        onChangeText={(event) => onChange("newPassword", event)} />
                 </View>
+
+
+            
                 <View style={styles.TextStyle4}>
                     <TextInput
                         style={{ marginLeft: 7 }}
-                        placeholder="Email"
-                        placeholderTextColor="black"
-                        onChangeText={(event) => onChange("email", event)} />
-                </View>
-                <View style={styles.TextStyle5}>
-                    <TextInput
-                        style={{ marginLeft: 7 }}
-                        placeholder="Password"
-                        placeholderTextColor="black"
-                        onChangeText={(event) => onChange("password", event)} />
-                </View>
-
-                <View style={styles.TextStyle6}>
-                    <TextInput
-                        style={{ marginLeft: 7 }}
-                        placeholder=" Confirm Password"
+                        placeholder="Confirem New Password"
                         placeholderTextColor="black"
                         onChangeText={(event) => onChange("confirmPassword", event)} />
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.navigate("forgetPassword")}>
                     <View style={styles.screenContainer}>
-                        <Text style={{ alignSelf: 'center', marginTop: 8, fontSize: 25 }}>Create Account</Text>
+                        <Text style={{ alignSelf: 'center', marginTop: 8, fontSize: 25 }}>Submit</Text>
                     </View>
                 </TouchableOpacity>
 
@@ -76,7 +63,7 @@ const SignUp = ({navigation}) => {
     )
 }
 
-export default SignUp
+export default  changePassword
 const styles = StyleSheet.create({
     ImageBackgroundStyle1: {
         height: "100%",
@@ -121,25 +108,6 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: "4%",
         borderRadius: 40,
-    },
-
-    TextStyle6: {
-        height: 50,
-        width: "80%",
-        backgroundColor: "white",
-        alignSelf: 'center',
-        marginTop: "4%",
-        borderRadius: 40
-    },
-
-    TextStyle5: {
-        height: 50,
-        width: "80%",
-        backgroundColor: "white",
-        alignSelf: 'center',
-        marginTop: "4%",
-        borderRadius: 40,
-        
     },
 
     screenContainer: {

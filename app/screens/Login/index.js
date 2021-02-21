@@ -7,10 +7,12 @@ const Login = (navigation) => {
         email: "",
         password: "",
         }
-const [color, setcolor] = useState("white")
+// const [color, setcolor] = useState("white")
 
 
-const[toggle,settoggle]=useState(false)
+// const[toggle,settoggle]=useState(false)
+const[email,setemail]= useState("")
+const[password,setpassword]=useState("")
 
     const [user, setUser] = useState(userData)
 
@@ -23,13 +25,15 @@ const[toggle,settoggle]=useState(false)
     }
 
     const submit = ()=>{
-        settoggle(!toggle)
-        if(toggle){
-            setcolor("red")
-        }
-        else{
-            setcolor("white")
-        }
+        console.log("password")
+     if(email===''|| password==='') {
+Alert.alert("plz fill all")
+
+     } else{
+         navigation.navigate("home")
+     } 
+     
+        
     }
 
     return (
@@ -41,11 +45,12 @@ const[toggle,settoggle]=useState(false)
 
                 
                 <View style={{ alignSelf: "center", marginTop: "5%", marginBottom: "5%" }}>
-                    {/* <Text style={styles.TextStyle1}>GOLF FLIP</Text> */}
+                   
                     <Text style={styles.TextStyle1}>GOLF FLIP</Text>
 {/* 
                     <Text style={{color:toggle===true?"white":"red",fontSize:30}}>WELCOME BACK!</Text> */}
-                    <Text style={{color:color,fontSize:30}}>WELCOME BACK!</Text> 
+                    {/* <Text style={{color:color,fontSize:30}}>WELCOME BACK!</Text>  */}
+                    <Text style={styles.TextStyle2}>WELCOME BACK!</Text> 
                 </View>
 
                 <View style={styles.TextStyle}>
@@ -67,7 +72,7 @@ const[toggle,settoggle]=useState(false)
                         <Text style={{ fontSize: 20, color: "white",textDecorationLine:"underline" }}>Forget password</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity> 
+                <TouchableOpacity onPress={()=>submit()}> 
                 <View style={styles.ViewStyle1}>
                 <Text style={styles.ViewStyle3}>LOGIN</Text>
                 </View>
@@ -75,10 +80,10 @@ const[toggle,settoggle]=useState(false)
                 <View style={{flexDirection:"row",justifyContent:"center",marginTop:20}}
                 >
                    <Text style={{fontSize:20,color:"white"}}>New here?</Text> 
-                   <Text style={{fontSize:20,color:"white" }} onPress={()=>Alert.alert("sahil")}> Create an Account</Text>
-                   <Button title='toggle' onPress={()=>submit()  }>
+                   <Text style={{fontSize:20,color:"white" }} onPress={()=>navigation.navigate("SignUp")}> Create an Account</Text>
+                   {/* <Button title='toggle' onPress={()=>submit()}>
 
-                   </Button>
+                   </Button> */}
                   
                    </View>
                  
