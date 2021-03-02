@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
-import { View, Text, Image, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity, Alert } from 'react-native'
 import Path from '../../Constant/ImagePath'
-const SignUp = ({navigation}) => {
+const SignUp = ({ navigation }) => {
     const UserData = {
         name: "",
         email: "",
@@ -11,11 +11,31 @@ const SignUp = ({navigation}) => {
     }
 
     const [user, setUser] = useState(UserData)
+    const { name, email, password, confirmPassword } = user
     const onChange = (feild, value) => {
         setUser({ ...user, [feild]: value })
     }
 
-
+    const Submit = () => {
+        if (name === "") {
+            Alert.alert("Please enter a name  ")
+        }
+        else if (email === "") {
+            Alert.alert("Please enter an  email  ")
+        }
+        else if (password === "") {
+            Alert.alert("Please enter a  password  ")
+        }
+        else if (confirmPassword === "") {
+            Alert.alert("Please confirm  password  ")
+        }
+        else if (confirmPassword !== password) {
+            Alert.alert("Password mismatch ")
+        }
+        else {
+            navigation.navigate("Login")
+        }
+    }
     return (
 
 
@@ -62,7 +82,7 @@ const SignUp = ({navigation}) => {
                         placeholderTextColor="black"
                         onChangeText={(event) => onChange("confirmPassword", event)} />
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>Submit()}>
                     <View style={styles.screenContainer}>
                         <Text style={{ alignSelf: 'center', marginTop: 8, fontSize: 25 }}>Create Account</Text>
                     </View>
@@ -88,7 +108,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         height: 79,
         marginTop: 40,
-        
+
     },
 
     TextStyle1: {
@@ -139,7 +159,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: "4%",
         borderRadius: 40,
-        
+
     },
 
     screenContainer: {
@@ -149,8 +169,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: "15%",
         borderRadius: 50,
-        textDecorationLine:'underline',
-        
+        textDecorationLine: 'underline',
+
     }
 
 

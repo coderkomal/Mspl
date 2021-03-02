@@ -1,19 +1,29 @@
 import React from 'react'
 import { useState } from 'react'
-import { View, Text, Image, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity, Alert } from 'react-native'
 import Path from '../../Constant/ImagePath'
-const changePassword = ({navigation}) => {
-    const UserData = { 
+const changePassword = ({ navigation }) => {
+    const UserData = {
         newPassword: "",
-        confirmPassword:"",
-        
+        confirmPassword: "",
+
     }
 
     const [user, setUser] = useState(UserData)
     const onChange = (feild, value) => {
         setUser({ ...user, [feild]: value })
     }
-
+    submit = () => {
+        if (user.newPassword == "" && user.confirmPassword == "") {
+            Alert.alert("fill both the fields")
+        }
+        else if (user.confirmPassword !== user.newPassword) {
+            Alert.alert("password mismatch")
+        }
+        else {
+            navigation.navigate("Login")
+        }
+    }
 
     return (
 
@@ -41,7 +51,7 @@ const changePassword = ({navigation}) => {
                 </View>
 
 
-            
+
                 <View style={styles.TextStyle4}>
                     <TextInput
                         style={{ marginLeft: 7 }}
@@ -49,7 +59,7 @@ const changePassword = ({navigation}) => {
                         placeholderTextColor="black"
                         onChangeText={(event) => onChange("confirmPassword", event)} />
                 </View>
-                <TouchableOpacity onPress={()=>navigation.navigate("forgetPassword")}>
+                <TouchableOpacity onPress={() => submit()}>
                     <View style={styles.screenContainer}>
                         <Text style={{ alignSelf: 'center', marginTop: 8, fontSize: 25 }}>Submit</Text>
                     </View>
@@ -63,7 +73,7 @@ const changePassword = ({navigation}) => {
     )
 }
 
-export default  changePassword
+export default changePassword
 const styles = StyleSheet.create({
     ImageBackgroundStyle1: {
         height: "100%",
@@ -75,7 +85,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         height: 79,
         marginTop: 40,
-        
+
     },
 
     TextStyle1: {
@@ -117,8 +127,8 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         marginTop: "15%",
         borderRadius: 50,
-        textDecorationLine:'underline',
-        
+        textDecorationLine: 'underline',
+
     }
 
 

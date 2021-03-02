@@ -1,18 +1,32 @@
 import React from 'react'
 import { useState } from 'react'
-import { View, Text, Image, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, ImageBackground, TextInput, Button, TouchableOpacity, Alert } from 'react-native'
 import Path from '../../Constant/ImagePath'
 const forgetPassword = ({navigation}) => {
     const UserData = { 
         email: "",
-        phoneNumber: "",
-        
-    }
+        phoneNumber: "",}
 
+       
+//  const{email,phoneNumber}=user
     const [user, setUser] = useState(UserData)
     const onChange = (feild, value) => {
         setUser({ ...user, [feild]: value })
     }
+const submit=()=>{
+    
+if(user.email!==''&& user.phoneNumber==''||user.email==""&&user.phoneNumber!==""){
+    navigation.navigate("Login")}
+
+else if(user.email===""&&user.phoneNumber===""){
+
+        Alert.alert("please fill a feild")
+
+}else if(user.email!==''&&user.phoneNumber!==''){
+Alert.alert("choose one of the field")
+
+}else{}
+}
 
 
     return (
@@ -47,9 +61,9 @@ const forgetPassword = ({navigation}) => {
                         style={{ marginLeft: 7 }}
                         placeholder="Phone Number"
                         placeholderTextColor="black"
-                        onChangeText={(event) => onChange(" phoneNumber", event)} />
+                        onChangeText={(event) => onChange("phoneNumber", event)} />
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>submit()}>
                     <View style={styles.screenContainer}>
                         <Text style={{ alignSelf: 'center', marginTop: 8, fontSize: 25 }}>Submit</Text>
                     </View>
